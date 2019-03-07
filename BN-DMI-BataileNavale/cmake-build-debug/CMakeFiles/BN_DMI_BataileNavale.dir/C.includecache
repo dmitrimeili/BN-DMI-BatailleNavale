@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+P:/1er annee/Modules I-CT/ICT-431/bataille-navale/BN-DMI-BataileNavale/main.c
+stdio.h
+-
+windows.h
+-
+
