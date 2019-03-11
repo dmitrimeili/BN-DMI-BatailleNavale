@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <windows.h>
+
 #define STLC 218 // ┌, Single Top Left Corner
 #define STRC 191 // ┐, Single Top Right Corner
 #define SBLC 192 // └, Single Bottom Left Corner
@@ -24,7 +25,32 @@
 #define DC   206 // ╬, Double Center
 
 #pragma execution_character_set("UTF-8")
-void grille(){
+
+void hautgrille() {//grille en haut
+    printf("  %c", STLC);
+    for (int grillehaut = 0; grillehaut < 9; grillehaut++) {
+        printf("%c%c%c%c", SHSB, SHSB, SHSB, SHTB);
+    }
+    printf("%c%c%c%c", SHSB, SHSB, SHSB, STRC);
+}
+
+void basgrille() {//grille en bas
+    printf("  %c", SBLC);
+    for (int grillehaut = 0; grillehaut < 9; grillehaut++) {
+        printf("%c%c%c%c", SHSB, SHSB, SHSB, SHBB);
+    }
+    printf("%c%c%c%c", SHSB, SHSB, SHSB, SBRC);
+}
+
+void milieugrille() {
+    printf("  %c", SVLB);
+    for (int i = 0; i < 9; i++) {
+        printf("%c%c%c%c", SHSB, SHSB, SHSB, SC);
+    }
+    printf("%c%c%c%c", SHSB, SHSB, SHSB, SVRB);
+}
+
+void grille() {
     int tableau[10][10] = {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 1, 1, 0, 0, 0, 0, 0, 0, 0},
@@ -36,28 +62,37 @@ void grille(){
             {0, 0, 0, 0, 0, 1, 1, 1, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            };
-    printf(" X A B C D E F G H I J");// grille horizontale
+    };
+    printf(" X A B C D E F G H I J\n");// grille horizontale
+    hautgrille();
     for (int x = 0; x < 10; x++) {
+
         printf("\n %d", x);// saut de ligne pour mettre l axe y
 
 
         for (int y = 0; y < 10; y++) {
 
-            if(tableau[x][y]==0)
-            {
+            if (tableau[x][y] == 0) {
 
-                printf("%c ~",SVSB);
 
-            }else if(tableau[x][y]==1){
-                printf("%c m",SVSB);
+                printf("%c ~ ", SVSB);
+
+
+            } else if (tableau[x][y] == 1) {
+                printf("%c m ", SVSB);
+
             }
 
         }
+
     }
+
+    printf("\n");
+    basgrille();
 
 
 }
+
 int main() {
     SetConsoleOutputCP(65001);
     SetConsoleOutputCP(437);
@@ -69,13 +104,13 @@ int main() {
     scanf("%d", &choice);
     if (choice == 1) {
 
-       grille();
+        grille();
 
 
     }
     printf("\nTaper sur 2 pour afficher l’aide");
-    scanf("%d",&choice);
-    if(choice==2){
+    scanf("%d", &choice);
+    if (choice == 2) {
         printf("La bataille navale oppose deux joueurs qui s'affrontent.\n");
         printf("Chacun a une flotte composée de 3 bateaux, qui sont, en général,\n");
         printf("les suivants : 1 porte-avion 1 croiseur (4 cases), 1 contre-torpilleur (3 cases),1 torpilleur (2 cases).\n");
