@@ -43,7 +43,7 @@ void basgrille() {//grille en bas
 }
 
 void milieugrille() {
-    printf("  %c", SVLB);
+    printf("%c", SVLB);
     for (int i = 0; i < 9; i++) {
         printf("%c%c%c%c", SHSB, SHSB, SHSB, SC);
     }
@@ -63,27 +63,38 @@ void grille() {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     };
-    printf(" X A B C D E F G H I J\n");// grille horizontale
+    printf(" X  A   B   C   D   E   F   G   H   I   J\n");// grille horizontale
     hautgrille();
     for (int x = 0; x < 10; x++) {
 
         printf("\n %d", x);// saut de ligne pour mettre l axe y
 
 
+
+        printf("%c", SVSB);
+
         for (int y = 0; y < 10; y++) {
 
             if (tableau[x][y] == 0) {
 
 
-                printf("%c ~ ", SVSB);
+                printf(" ~ %c", SVSB);
 
 
             } else if (tableau[x][y] == 1) {
-                printf("%c m ", SVSB);
+                printf(" m %c", SVSB);
 
             }
 
         }
+        if (x <= 8) {
+            printf("\n  ");
+            milieugrille();
+
+        } else if (x == 9) {
+            printf("");
+        }
+
 
     }
 
@@ -98,16 +109,20 @@ int main() {
     SetConsoleOutputCP(437);
     int choice;
 
+    SetConsoleOutputCP(65001);
     printf("Bataille Navale\n");
+
+    SetConsoleOutputCP(65001);
 
     printf("Taper sur 1 pour démarrer une partie  ");
     scanf("%d", &choice);
     if (choice == 1) {
-
+        SetConsoleOutputCP(437);
         grille();
 
 
     }
+    SetConsoleOutputCP(65001);
     printf("\nTaper sur 2 pour afficher l’aide");
     scanf("%d", &choice);
     if (choice == 2) {
@@ -120,7 +135,8 @@ int main() {
         printf("Au fur et à mesure, il faut mettre les pions sur sa propre grille afin de se souvenir de ses tirs passés.\n");
 
     }
-
+    getchar();
+    getchar();
 
     return 0;
 }
