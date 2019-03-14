@@ -1,22 +1,29 @@
-# bataille-navale
-7a DESCRIPTIF DU PROJET
-7.1 Généralités
-Ce module MA-20 a pour objectifs d'entraîner les étudiants à la réalisation de projet de type
-développement.
-7.2 Fonctionnalités minimales
-Le type d’application C demandé doit offrir les fonctionnalités minimales suivantes :
-Version 0.1 (pour le 2 mars 2018) :
-• Jouer à la bataille navale alors que la position des bateaux est codée dans le
-programme
-• Afficher l’aide du jeu
-Version 1.0 (pour le 20 avril 2018)
-• S’authentifier en tant que joueur
-• Logger les faits importants durant toute la durée de fonctionnement de l’application
-• Le programme choisit une grille au hasard dans un répertoire et la charge
-• Afficher la liste des scores atteints lors des parties précédentes
-Notes :
-• Des fichiers seront utilisés pour la persistance des données.
-• Un menu de type console sera utilisé pour accéder aux différentes fonctionnalités.
-• Une extension pourra être envisagée pour ceux qui auraient terminé toutes les
-fonctionnalités avant la fin du temps imparti. Elle sera à discuter entre l’élève et le
-mandant du projet.
+# Bataille Navale
+
+## Description
+Le but de ce projet est de coder une bataille navale PvE sur Clion
+
+## Génération
+
+
+Vous aurez besoin de:
+
+- avoir un ordinateur avec windows 7/10.
+
+
+
+
+Pour générer l'exécutable, vous devez:
+
+1. Aller sur le repository https://github.com/dmitrimeili/BN-DMI-BatailleNavale/tree/master/BN-DMI-BataileNavale.
+1. copier le code du main.c .
+1. crée un nouveau projet dans une application qui utilise le language C tel que Clion.
+1. compiler le programme.
+
+
+## Exécution
+
+Pour exécuter le programme, vous devez:
+
+1. Aller dans le dossier qui contient l'executable.
+1. Double-cliquez sur BN_DMI_BataileNavale.exe.
