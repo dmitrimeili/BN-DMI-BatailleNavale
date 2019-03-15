@@ -24,6 +24,19 @@
 #define DHTB 203 // ╦, Double Horizontal Top Border
 #define DC   206 // ╬, Double Center
 
+
+int tableau[10][10] = {
+        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 1, 1, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 1, 1, 1, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+};
 #pragma execution_character_set("UTF-8")
 
 void hautgrille() {//grille en haut
@@ -51,18 +64,7 @@ void milieugrille() {
 }
 
 void grille() {
-    int tableau[10][10] = {
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 1, 1, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 1, 1, 1, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    };
+
     printf(" X  A   B   C   D   E   F   G   H   I   J\n");// grille horizontale
     hautgrille();
     for (int x = 0; x < 10; x++) {
@@ -84,6 +86,8 @@ void grille() {
             } else if (tableau[x][y] == 1) {
                 printf(" m %c", SVSB);
 
+            } else if (tableau[x][y] == 2) {
+                printf(" X %c", SVSB);
             }
 
         }
@@ -132,9 +136,37 @@ int main() {
         printf("Au début du jeu, chaque joueur place ses bateaux sur sa grille\n");
         printf("Un à un, les joueurs vont \"tirer\" sur une case de l'adversaire : par exemple, B.3 ou encore H.8.\n");
         printf("Le but est donc de couler les bateaux adverses.\n");
-        printf("Au fur et à mesure, il faut mettre les pions sur sa propre grille afin de se souvenir de ses tirs passés.\n");
+        printf("Au fur et à mesure, il faut mettre les pions sur sa propre grille afin de se souvenir de ses tirs passés.\n\n");
 
     }
+    char tir[5];
+    int inputX;
+    int inputY;
+//Tirer sur les bateaux
+    printf("Donner la case du tir:");
+    scanf("%s", &tir);
+
+    int col = tir[0] - 65;
+    int row = tir[1] - 49;
+    while (col < 0 || col > 9 || row < 0 || row > 9) {
+        printf("\nCoordonnée invalide");
+        printf("\nDonner la case du tir:");
+        scanf("%s", &tir);
+        col = tir[0] - 65;
+        row = tir[1] - 49;
+    }
+    printf("Ligne %d, colonne %d\n", row, col);
+
+    if (col == 0 && row == 0) {
+        tableau[0][0] = 2;
+    }
+    SetConsoleOutputCP(437);
+    grille();
+    printf("touché");
+
+    // petit bateau
+
+
     getchar();
     getchar();
 
