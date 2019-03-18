@@ -27,15 +27,15 @@
 
 int tableau[10][10] = {
         {1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 1, 1, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+        {0, 2, 2, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 4, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 4, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 4, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 4, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 1, 1, 1, 0, 0},
+        {0, 0, 0, 0, 0, 3, 3, 3, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {9, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 };
 #pragma execution_character_set("UTF-8")
 
@@ -77,33 +77,60 @@ void grille() {
 
         for (int y = 0; y < 10; y++) {
 
-            if (tableau[x][y] == 0) {
+            switch (tableau[x][y] ) {
 
+                case 0:
+                    tableau[x][y] == 0;
+                    printf(" ~ %c", SVSB);
+                    break;
 
-                printf(" ~ %c", SVSB);
+                case 1:
+                    tableau[x][y] == 1;
+                    printf(" m %c", SVSB);
+                    break;
 
+                case 2:
+                    tableau[x][y] == 2;
+                    printf(" m %c", SVSB);
+                    break;
 
-            } else if (tableau[x][y] == 1) {
-                printf(" m %c", SVSB);
+                case 3:
+                    tableau[x][y] == 3;
+                    printf(" m %c", SVSB);
+                    break;
+                case 4:
+                    tableau[x][y] == 4;
+                    printf(" m %c", SVSB);
+                    break;
+                case 5:
+                    tableau[x][y] == 4;
+                    printf(" m %c", SVSB);
+                    break;
 
-            } else if (tableau[x][y] == 2) {
-                printf(" X %c", SVSB);
+                    case 9:
+                    tableau[x][y] == 9;
+                    printf(" . %c", SVSB);
+                    break;
             }
 
-        }
-        if (x <= 8) {
-            printf("\n  ");
-            milieugrille();
 
-        } else if (x == 9) {
-            printf("");
-        }
 
 
     }
+    if (x <= 8) {
+        printf("\n  ");
+        milieugrille();
 
-    printf("\n");
-    basgrille();
+    } else if (x == 9) {
+        printf("");
+    }
+
+
+}
+
+printf("\n");
+
+basgrille();
 
 
 }
@@ -120,13 +147,7 @@ int main() {
 
     printf("Taper sur 1 pour démarrer une partie  ");
     scanf("%d", &choice);
-    if (choice == 1) {
-        SetConsoleOutputCP(437);
-        grille();
-
-
-    }
-    SetConsoleOutputCP(65001);
+    SetConsoleOutputCP(437);
     printf("\nTaper sur 2 pour afficher l’aide");
     scanf("%d", &choice);
     if (choice == 2) {
@@ -143,29 +164,66 @@ int main() {
     int inputX;
     int inputY;
 //Tirer sur les bateaux
-    printf("Donner la case du tir:");
-    scanf("%s", &tir);
-
-    int col = tir[0] - 65;
-    int row = tir[1] - 49;
-    while (col < 0 || col > 9 || row < 0 || row > 9) {
-        printf("\nCoordonnée invalide");
-        printf("\nDonner la case du tir:");
+    while (tir[0] != '0') {
+        grille();
+        printf("Donner la case du tir:");
         scanf("%s", &tir);
-        col = tir[0] - 65;
-        row = tir[1] - 49;
+
+        int col = tir[0] - 65;
+        int row = tir[1] - 48;
+        while (col < 0 || col > 9 || row < 0 || row > 9) {
+            printf("\nCoordonnée invalide");
+            printf("\nDonner la case du tir:");
+            scanf("%s", &tir);
+            col = tir[0] - 65;
+            row = tir[1] - 48;
+        }
+        printf("Ligne %d, colonne %d : %d\n", row, col, tableau[row][col]);
+
+        switch (tableau[row][col]) {
+            case 0:
+                printf("a l eau");
+                tableau[row][col] = 9;
+                break;
+            case 1:
+                printf("touché");
+                tableau[row][col] = 5;
+                break;
+            case 9:
+                printf("cretin");
+                break;
+        }
+        /*
+        if (col == 0 && row == 0) {
+            tableau[0][0] = 2;
+            SetConsoleOutputCP(437);
+            grille();
+            printf("touché\n");
+        }
+
+
+        // petit bateau
+        if (col == 1 && row == 1) {
+            tableau[1][1] = 2;
+            SetConsoleOutputCP(437);
+            grille();
+            printf("touché\n");
+        }
+        if (col == 2 && row == 1) {
+            tableau[1][2] = 2;
+            SetConsoleOutputCP(437);
+            grille();
+            printf("touché\n");
+        }
+        if (tableau[1][1]==2 && tableau[1][2] == 2)
+            tableau[1][1] = 3;
+            tableau[1][2] = 3;
+            SetConsoleOutputCP(437);
+            grille();
+            printf("coulé\n");
+         }
+         */
     }
-    printf("Ligne %d, colonne %d\n", row, col);
-
-    if (col == 0 && row == 0) {
-        tableau[0][0] = 2;
-    }
-    SetConsoleOutputCP(437);
-    grille();
-    printf("touché");
-
-    // petit bateau
-
 
     getchar();
     getchar();
