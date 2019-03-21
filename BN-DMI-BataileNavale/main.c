@@ -81,35 +81,35 @@ void grille() {
 
                 case 0:
                     tableau[x][y] == 0;
-                    printf(" ~ %c", SVSB);
+                    printf(" ~ %c", SVSB);// de l'eau
                     break;
 
                 case 1:
                     tableau[x][y] == 1;
-                    printf(" m %c", SVSB);
+                    printf(" m %c", SVSB);// bateau 1*1
                     break;
 
                 case 2:
                     tableau[x][y] == 2;
-                    printf(" m %c", SVSB);
+                    printf(" m %c", SVSB);// bateau 1*2
                     break;
 
                 case 3:
                     tableau[x][y] == 3;
-                    printf(" m %c", SVSB);
+                    printf(" m %c", SVSB);// bateau 1*3
                     break;
                 case 4:
                     tableau[x][y] == 4;
-                    printf(" m %c", SVSB);
+                    printf(" m %c", SVSB);// bateau 1*4
                     break;
                 case 5:
-                    tableau[x][y] == 4;
+                    tableau[x][y] == 5;
                     printf(" m %c", SVSB);
                     break;
 
                     case 9:
                     tableau[x][y] == 9;
-                    printf(" . %c", SVSB);
+                    printf(" . %c", SVSB);// a l'eau 
                     break;
             }
 
@@ -182,15 +182,15 @@ int main() {
 
         switch (tableau[row][col]) {
             case 0:
-                printf("a l eau");
+                printf("\na l eau\n");
                 tableau[row][col] = 9;
                 break;
             case 1:
-                printf("touché");
+                printf("\ntouché\n");
                 tableau[row][col] = 5;
                 break;
             case 9:
-                printf("cretin");
+                printf("\ncretin\n");
                 break;
         }
         /*
