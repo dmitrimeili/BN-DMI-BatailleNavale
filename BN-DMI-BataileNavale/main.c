@@ -77,7 +77,7 @@ void grille() {
 
         for (int y = 0; y < 10; y++) {
 
-            switch (tableau[x][y] ) {
+            switch (tableau[x][y]) {
 
                 case 0:
                     tableau[x][y] == 0;
@@ -103,34 +103,37 @@ void grille() {
                     printf(" m %c", SVSB);// bateau 1*4
                     break;
                 case 5:
-                    tableau[x][y] == 5;
-                    printf(" m %c", SVSB);
+                    tableau[x][y] == 5;// toucher bateau 1*1
+                    printf(" * %c", SVSB);
                     break;
 
-                    case 9:
+                case 6:
+                    tableau[x][y]==6;
+                    printf(" X %c", SVSB);
+                    break;
+
+                case 9:
                     tableau[x][y] == 9;
-                    printf(" . %c", SVSB);// a l'eau 
+                    printf(" . %c", SVSB);// a l'eau
                     break;
             }
 
 
+        }
+        if (x <= 8) {
+            printf("\n  ");
+            milieugrille();
+
+        } else if (x == 9) {
+            printf("");
+        }
 
 
     }
-    if (x <= 8) {
-        printf("\n  ");
-        milieugrille();
 
-    } else if (x == 9) {
-        printf("");
-    }
+    printf("\n");
 
-
-}
-
-printf("\n");
-
-basgrille();
+    basgrille();
 
 
 }
@@ -179,16 +182,44 @@ int main() {
             row = tir[1] - 48;
         }
         printf("Ligne %d, colonne %d : %d\n", row, col, tableau[row][col]);
-
+        int hits[4] = {0, 0, 0, 0};
+        int val = 0;
         switch (tableau[row][col]) {
             case 0:
                 printf("\na l eau\n");
                 tableau[row][col] = 9;
                 break;
             case 1:
-                printf("\ntouché\n");
+                val = 1;
+                hits[val]++;
+                printf("\ntouché coulé!\n");
                 tableau[row][col] = 5;
                 break;
+            case 2:
+                val = 2;
+                hits[val]++;
+                printf("\ntouché\n");
+                tableau[row][col]=6;
+                if(hits[2]==2){
+                    tableau[row][col]=5;
+                    printf("coulé");
+
+                }
+                break;
+            case 3:
+                val = 3;
+                hits[val]++;
+                printf("\ntouché\n");
+                tableau[row][col]=6;
+                break;
+            case 4:
+                val = 4;
+                hits[val]++;
+                printf("\ntouché\n");
+                tableau[row][col]=6;
+                break;
+
+
             case 9:
                 printf("\ncretin\n");
                 break;
