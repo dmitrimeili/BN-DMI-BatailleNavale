@@ -114,7 +114,7 @@ void grille() {
                     break;
 
                 case 6:
-                    tableau[x][y]==6;
+                    tableau[x][y] == 6;
                     printf(" X %c", SVSB);
                     break;
 
@@ -199,9 +199,9 @@ int main() {
         printf("Un à un, les joueurs vont \"tirer\" sur une case de l'adversaire : par exemple, B.3 ou encore H.8.\n");
         printf("Le but est donc de couler les bateaux adverses.\n");
         printf("Au fur et à mesure, il faut mettre les pions sur sa propre grille afin de se souvenir de ses tirs passés.\n\n");
-
+        SetConsoleOutputCP(437);
     }
-    if(choice==1){
+    if (choice == 1) {
         SetConsoleOutputCP(437);
 
     }
@@ -209,15 +209,18 @@ int main() {
     int inputX;
     int inputY;
 //Tirer sur les bateaux
-    int hits[4] = {0, 0, 0, 0};
-    while (tir[0] != '0') {
+    int hits[5] = {0, 0, 0, 0, 0};
+    do {
+        SetConsoleOutputCP(437);
         grille();
+        SetConsoleOutputCP(65001);
         printf("Donner la case du tir:");
         scanf("%s", &tir);
 
         int col = tir[0] - 65;
         int row = tir[1] - 48;
-        while (col < 0 || col > 9 || row < 0 || row > 9) {
+        while (col < 0 || col > 9 || row < 0 || row > 9  ) {
+
             printf("\nCoordonnée invalide");
             printf("\nDonner la case du tir:");
             scanf("%s", &tir);
@@ -229,7 +232,7 @@ int main() {
         int val = 0;
         switch (tableau[row][col]) {
             case 0:
-                printf("\na l eau\n");
+                printf("\na l'eau\n");
                 tableau[row][col] = 9;
                 break;
             case 1:
@@ -240,12 +243,13 @@ int main() {
                 break;
             case 2:
                 val = 2;
-                hits[val]=hits[val]+1;
+                hits[val] = hits[val] + 1;
                 printf("\ntouché\n");
-                tableau[row][col]=6;
-                if(hits[val]==2){
-                    tableau[row][col]=5;
-                    printf("coulé");
+                tableau[row][col] = 6;
+                if (hits[val] == 2) {
+                    tableau[1][1] = 5;
+                    tableau[1][2] = 5;
+                    printf("coulé\n");
 
                 }
 
@@ -254,58 +258,43 @@ int main() {
                 val = 3;
                 hits[val]++;
                 printf("\ntouché\n");
-                tableau[row][col]=6;
+                tableau[row][col] = 6;
+                if (hits[val] == 3) {
+                    tableau[7][5] = 5;
+                    tableau[7][6] = 5;
+                    tableau[7][7] = 5;
+                    printf("coulé\n");
+
+                }
                 break;
             case 4:
                 val = 4;
                 hits[val]++;
                 printf("\ntouché\n");
-                tableau[row][col]=6;
-                break;
+                tableau[row][col] = 6;
+                if (hits[val] == 4) {
+                    tableau[2][8] = 5;
+                    tableau[3][8] = 5;
+                    tableau[4][8] = 5;
+                    tableau[5][8] = 5;
+                    printf("coulé\n");
 
+                }
+                break;
 
 
             case 9:
                 printf("\ncretin\n");
                 break;
         }
-        if(hits[2]==2){
-            tableau[row][col]=5;
-            printf("coulé");
-
-        }
-        /*
-        if (col == 0 && row == 0) {
-            tableau[0][0] = 2;
-            SetConsoleOutputCP(437);
-            grille();
-            printf("touché\n");
-        }
 
 
-        // petit bateau
-        if (col == 1 && row == 1) {
-            tableau[1][1] = 2;
-            SetConsoleOutputCP(437);
-            grille();
-            printf("touché\n");
-        }
-        if (col == 2 && row == 1) {
-            tableau[1][2] = 2;
-            SetConsoleOutputCP(437);
-            grille();
-            printf("touché\n");
-        }
-        if (tableau[1][1]==2 && tableau[1][2] == 2)
-            tableau[1][1] = 3;
-            tableau[1][2] = 3;
-            SetConsoleOutputCP(437);
-            grille();
-            printf("coulé\n");
-         }
-         */
-    }
 
+    }while (hits[1] != 1 || hits[2] != 2 || hits[3] != 3 || hits[4] != 4);
+    SetConsoleOutputCP(437);
+    grille();
+    SetConsoleOutputCP(65001);
+    printf("\nVICTOIRE!!!");
     getchar();
     getchar();
 
