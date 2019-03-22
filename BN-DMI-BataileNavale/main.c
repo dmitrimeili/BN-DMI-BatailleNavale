@@ -1,3 +1,9 @@
+/*
+ * Title: Bataille Navale
+ * Author: Meili Dmitri
+ * Date: 22.03.2019
+ */
+
 #include <stdio.h>
 #include <windows.h>
 
@@ -103,7 +109,7 @@ void grille() {
                     printf(" m %c", SVSB);// bateau 1*4
                     break;
                 case 5:
-                    tableau[x][y] == 5;// toucher bateau 1*1
+                    tableau[x][y] == 5;// toucher couler
                     printf(" * %c", SVSB);
                     break;
 
@@ -145,13 +151,45 @@ int main() {
 
     SetConsoleOutputCP(65001);
     printf("Bataille Navale\n");
+    printf(""
+           ""
+           ""
+           "\"                                                                                                                                  _.\\n\"\n"
+           "\"                                                                                                                            _.--\\\"' |\\n\"\n"
+           "\"                                                                                                                      _.--\\\"'       |\\n\"\n"
+           "\"                                                                                                                _.--\\\"'      _..,.  |\\n\"\n"
+           "\"                                                                                                          _.--\\\"'            .==; '.|\\n\"\n"
+           "\"                                                                                                    _.--\\\"'                     :   |'.\\n\"\n"
+           "\"                                                                                              _.--\\\"'                            ;  |  '.\\n\"\n"
+           "\"                                                                                        _.--\\\"'                                  :  |    '.\\n\"\n"
+           "\"                                                                                  _.--\\\"'                                         ; |      '.\\n\"\n"
+           "\"                                                                            _.--\\\"'                         _.                    : |        '.\\n\"\n"
+           "\"                                                                      _.--\\\"'                              _.--^\\\"  :                   q I     --mmm--\\n\"\n"
+           "\"                                                                _.--\\\"'                                   ;      _,.;_                 |_I____._\\\\___/___._.__\\n\"\n"
+           "\"                                                          _.--\\\"'                                         :_.--^\\\"   :_]                |______|     ==\\\" \\\" \\\"_|'\\n\"\n"
+           "\"                                                  |__.--\\\"'                                                  ;         ;|                |;I H| |_______'(|)|\\n\"\n"
+           "\"                                              .   | :                                                           :     _   :|                |:I_H|_|______[ '._|    _.---.______\\n\"\n"
+           "\"                                              I   | ;             ,    \\\\                    \\\\              ;__ [_]___;                |||____________| '_|    \\\\|   ;\\\"\\\"         |\\n\"\n"
+           "\"                       ______.---._    ______ I  /|:        \\\\     ;\\\\    \\\\                    \\\\      ,d.-^'|| '-.b.     ___       L| I|  |\\\"  |   |_[_|_X__[|___:_,.-^>_.---.______ /|\\n\"\n"
+           "\";                          \\\"\\\":\\\"|'|/    _\\\\--/  I_/_|;         \\\\    :/\\\\ __nm__                _nm   _d______||______b.__EEEE3       | I|__| m |___|__H_____|_ m__|'^|\\\"  \\\\|  ;  /|\\n\"\n"
+           "\";      ______.---._<^-.,_____;___|]__\\\\|____|_|I___|] .--_____nm____; |_dHH|_|.-           |dHH|_|,-======''==_===;===|====|______|_I|__|_W_|___|__H_____^__W__|__|____|___:___,.--._nnn__m__//  _o\\n\"\n"
+           "\":\\\\         \\\"\\\":   |/ \\\"|  |   __ m ___ .d88b. H m m || |_|-|-|-|-|-|-|  H*''|  .mmmmmmmmm^^\\\" '|m[]H\\\"m\\\"\\\"\\\"\\\"\\\"\\\"|   |_| []  [_]   /*  *  * * * * *|_|'\\\"7 |      * ;\\n\"\n"
+           "\":_\\\\__,.,_n_m_;___|]_I|_[|__[__]W_____'Y88P'_H_W_W_||_|_|_|_|_|_|_|_|__H&[]|_____^MMMM^______|W__H$ &$__I_____ -'________.-'                | | /  |                                    ^(8)- \\n\"\n"
+           "\"|<    H  * * *  * *  * *  *  * *  * * * * * * * *  *  *  *  *  *   *   *  *  *  *                                                                                       *  *  *   *  *       :\\n\"\n"
+           "\"|  _|_H_|_                                           ___________________________________________________________________________________                                                    ;\\n\"\n"
+           "\"'------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'\"\n"
+           "\"\"\n"
+           "\"\"\n"
+           "\"\"\n"
+           "\"\"\n"
+           "\n");
 
     SetConsoleOutputCP(65001);
 
     printf("Taper sur 1 pour démarrer une partie  ");
-    scanf("%d", &choice);
-    SetConsoleOutputCP(437);
-    printf("\nTaper sur 2 pour afficher l’aide");
+    printf("\nTaper sur 2 pour afficher l’aide\n");
+
+
     scanf("%d", &choice);
     if (choice == 2) {
         printf("La bataille navale oppose deux joueurs qui s'affrontent.\n");
@@ -163,10 +201,15 @@ int main() {
         printf("Au fur et à mesure, il faut mettre les pions sur sa propre grille afin de se souvenir de ses tirs passés.\n\n");
 
     }
+    if(choice==1){
+        SetConsoleOutputCP(437);
+
+    }
     char tir[5];
     int inputX;
     int inputY;
 //Tirer sur les bateaux
+    int hits[4] = {0, 0, 0, 0};
     while (tir[0] != '0') {
         grille();
         printf("Donner la case du tir:");
@@ -182,7 +225,7 @@ int main() {
             row = tir[1] - 48;
         }
         printf("Ligne %d, colonne %d : %d\n", row, col, tableau[row][col]);
-        int hits[4] = {0, 0, 0, 0};
+
         int val = 0;
         switch (tableau[row][col]) {
             case 0:
@@ -197,14 +240,15 @@ int main() {
                 break;
             case 2:
                 val = 2;
-                hits[val]++;
+                hits[val]=hits[val]+1;
                 printf("\ntouché\n");
                 tableau[row][col]=6;
-                if(hits[2]==2){
+                if(hits[val]==2){
                     tableau[row][col]=5;
                     printf("coulé");
 
                 }
+
                 break;
             case 3:
                 val = 3;
@@ -220,9 +264,15 @@ int main() {
                 break;
 
 
+
             case 9:
                 printf("\ncretin\n");
                 break;
+        }
+        if(hits[2]==2){
+            tableau[row][col]=5;
+            printf("coulé");
+
         }
         /*
         if (col == 0 && row == 0) {
