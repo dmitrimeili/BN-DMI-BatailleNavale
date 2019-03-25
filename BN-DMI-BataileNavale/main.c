@@ -185,10 +185,10 @@ int main() {
            "\n");
 
     SetConsoleOutputCP(65001);
-
+    int test;
+while(test!=1) {
     printf("Taper sur 1 pour démarrer une partie  ");
     printf("\nTaper sur 2 pour afficher l’aide\n");
-
 
     scanf("%d", &choice);
     if (choice == 2) {
@@ -199,104 +199,121 @@ int main() {
         printf("Un à un, les joueurs vont \"tirer\" sur une case de l'adversaire : par exemple, B.3 ou encore H.8.\n");
         printf("Le but est donc de couler les bateaux adverses.\n");
         printf("Au fur et à mesure, il faut mettre les pions sur sa propre grille afin de se souvenir de ses tirs passés.\n\n");
-        SetConsoleOutputCP(437);
+
+
     }
     if (choice == 1) {
         SetConsoleOutputCP(437);
-
-    }
-    char tir[5];
-    int inputX;
-    int inputY;
+        char tir[5];
+        int inputX;
+        int inputY;
 //Tirer sur les bateaux
-    int hits[5] = {0, 0, 0, 0, 0};
-    do {
+        int hits[5] = {0, 0, 0, 0, 0};
+        do {
+            SetConsoleOutputCP(437);
+            grille();
+            SetConsoleOutputCP(65001);
+            printf("Donner la case du tir:");
+            scanf("%s", &tir);
+
+            int col = tir[0] - 65;
+            int row = tir[1] - 48;
+            while (col < 0 || col > 9 || row < 0 || row > 9) {
+
+                printf("\nCoordonnée invalide");
+                printf("\nDonner la case du tir:");
+                scanf("%s", &tir);
+                col = tir[0] - 65;
+                row = tir[1] - 48;
+            }
+            printf("Ligne %d, colonne %d : %d\n", row, col, tableau[row][col]);
+
+            int val = 0;
+            switch (tableau[row][col]) {
+                case 0:
+                    printf("\na l'eau\n");
+                    tableau[row][col] = 9;
+                    break;
+                case 1:
+                    val = 1;
+                    hits[val]++;
+                    printf("\ntouché coulé!\n");
+                    Sleep(1000);
+                    system("cls");
+                    tableau[row][col] = 5;
+                    break;
+                case 2:
+                    val = 2;
+                    hits[val] = hits[val] + 1;
+                    printf("\ntouché\n");
+                    Sleep(1000);
+                    system("cls");
+                    tableau[row][col] = 6;
+                    if (hits[val] == 2) {
+                        tableau[1][1] = 5;
+                        tableau[1][2] = 5;
+                        printf("coulé\n");
+                        Sleep(1000);
+                        system("cls");
+                    }
+
+                    break;
+                case 3:
+                    val = 3;
+                    hits[val]++;
+                    printf("\ntouché\n");
+                    tableau[row][col] = 6;
+                    if (hits[val] == 3) {
+                        tableau[7][5] = 5;
+                        tableau[7][6] = 5;
+                        tableau[7][7] = 5;
+                        printf("coulé\n");
+
+                    }
+                    break;
+                case 4:
+                    val = 4;
+                    hits[val]++;
+                    printf("\ntouché\n");
+                    tableau[row][col] = 6;
+                    if (hits[val] == 4) {
+                        tableau[2][8] = 5;
+                        tableau[3][8] = 5;
+                        tableau[4][8] = 5;
+                        tableau[5][8] = 5;
+                        printf("coulé\n");
+
+                    }
+                    break;
+
+
+                case 9:
+                    printf("\ncretin\n");
+                    break;
+            }
+
+
+        } while (hits[1] != 1 || hits[2] != 2 || hits[3] != 3 || hits[4] != 4);
         SetConsoleOutputCP(437);
         grille();
         SetConsoleOutputCP(65001);
-        printf("Donner la case du tir:");
-        scanf("%s", &tir);
+        printf("\n __     __  __              __                __                     \n"
+               "/  |   /  |/  |            /  |              /  |                    \n"
+               "$$ |   $$ |$$/   _______  _$$ |_     ______  $$/   ______    ______  \n"
+               "$$ |   $$ |/  | /       |/ $$   |   /      \\ /  | /      \\  /      \\ \n"
+               "$$  \\ /$$/ $$ |/$$$$$$$/ $$$$$$/   /$$$$$$  |$$ |/$$$$$$  |/$$$$$$  |\n"
+               " $$  /$$/  $$ |$$ |        $$ | __ $$ |  $$ |$$ |$$ |  $$/ $$    $$ |\n"
+               "  $$ $$/   $$ |$$ \\_____   $$ |/  |$$ \\__$$ |$$ |$$ |      $$$$$$$$/ \n"
+               "   $$$/    $$ |$$       |  $$  $$/ $$    $$/ $$ |$$ |      $$       |\n"
+               "    $/     $$/  $$$$$$$/    $$$$/   $$$$$$/  $$/ $$/        $$$$$$$/ \n"
+               "                                                                     \n"
+               "                                                                     \n"
+               "                                                                     ");
 
-        int col = tir[0] - 65;
-        int row = tir[1] - 48;
-        while (col < 0 || col > 9 || row < 0 || row > 9  ) {
-
-            printf("\nCoordonnée invalide");
-            printf("\nDonner la case du tir:");
-            scanf("%s", &tir);
-            col = tir[0] - 65;
-            row = tir[1] - 48;
-        }
-        printf("Ligne %d, colonne %d : %d\n", row, col, tableau[row][col]);
-
-        int val = 0;
-        switch (tableau[row][col]) {
-            case 0:
-                printf("\na l'eau\n");
-                tableau[row][col] = 9;
-                break;
-            case 1:
-                val = 1;
-                hits[val]++;
-                printf("\ntouché coulé!\n");
-                tableau[row][col] = 5;
-                break;
-            case 2:
-                val = 2;
-                hits[val] = hits[val] + 1;
-                printf("\ntouché\n");
-                tableau[row][col] = 6;
-                if (hits[val] == 2) {
-                    tableau[1][1] = 5;
-                    tableau[1][2] = 5;
-                    printf("coulé\n");
-
-                }
-
-                break;
-            case 3:
-                val = 3;
-                hits[val]++;
-                printf("\ntouché\n");
-                tableau[row][col] = 6;
-                if (hits[val] == 3) {
-                    tableau[7][5] = 5;
-                    tableau[7][6] = 5;
-                    tableau[7][7] = 5;
-                    printf("coulé\n");
-
-                }
-                break;
-            case 4:
-                val = 4;
-                hits[val]++;
-                printf("\ntouché\n");
-                tableau[row][col] = 6;
-                if (hits[val] == 4) {
-                    tableau[2][8] = 5;
-                    tableau[3][8] = 5;
-                    tableau[4][8] = 5;
-                    tableau[5][8] = 5;
-                    printf("coulé\n");
-
-                }
-                break;
+    }
 
 
-            case 9:
-                printf("\ncretin\n");
-                break;
-        }
-
-
-
-    }while (hits[1] != 1 || hits[2] != 2 || hits[3] != 3 || hits[4] != 4);
-    SetConsoleOutputCP(437);
-    grille();
-    SetConsoleOutputCP(65001);
-    printf("\nVICTOIRE!!!");
-    getchar();
-    getchar();
-
+}
     return 0;
+
 }
