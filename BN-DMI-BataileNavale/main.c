@@ -215,7 +215,7 @@ while(test!=1) {
             SetConsoleOutputCP(65001);
             printf("Donner la case du tir:");
             scanf("%s", &tir);
-
+            scores++;
             int col = tir[0] - 65;
             int row = tir[1] - 48;
             while (col < 0 || col > 9 || row < 0 || row > 9) {
@@ -223,6 +223,7 @@ while(test!=1) {
                 printf("\nCoordonnée invalide");
                 printf("\nDonner la case du tir:");
                 scanf("%s", &tir);
+
                 col = tir[0] - 65;
                 row = tir[1] - 48;
             }
@@ -307,7 +308,7 @@ while(test!=1) {
                "                                                                     ");
 
     }
-
+printf("Vous avez tiré %d fois \n",scores);
 
 }
     return 0;
