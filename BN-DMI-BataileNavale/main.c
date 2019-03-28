@@ -148,7 +148,7 @@ int main() {
     SetConsoleOutputCP(65001);
     SetConsoleOutputCP(437);
     int choice;
-
+    int scores =0;
     SetConsoleOutputCP(65001);
     printf("Bataille Navale\n");
     printf(""
@@ -238,23 +238,18 @@ while(test!=1) {
                     val = 1;
                     hits[val]++;
                     printf("\ntouché coulé!\n");
-                    Sleep(1000);
-                    system("cls");
                     tableau[row][col] = 5;
                     break;
                 case 2:
                     val = 2;
                     hits[val] = hits[val] + 1;
                     printf("\ntouché\n");
-                    Sleep(1000);
-                    system("cls");
                     tableau[row][col] = 6;
                     if (hits[val] == 2) {
                         tableau[1][1] = 5;
                         tableau[1][2] = 5;
                         printf("coulé\n");
-                        Sleep(1000);
-                        system("cls");
+
                     }
 
                     break;
@@ -263,6 +258,7 @@ while(test!=1) {
                     hits[val]++;
                     printf("\ntouché\n");
                     tableau[row][col] = 6;
+
                     if (hits[val] == 3) {
                         tableau[7][5] = 5;
                         tableau[7][6] = 5;
