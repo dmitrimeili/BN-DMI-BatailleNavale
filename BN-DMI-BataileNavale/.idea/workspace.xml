@@ -33,11 +33,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="669">
-              <caret line="220" column="21" selection-start-line="220" selection-start-column="21" selection-end-line="220" selection-end-column="21" />
-              <folding>
-                <element signature="e#78#96#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="136">
+              <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -54,8 +51,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="430" />
+    <option name="y" value="252" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -127,12 +125,13 @@
       <workItem from="1553759752487" duration="2062000" />
       <workItem from="1553763200278" duration="1348000" />
       <workItem from="1554360444806" duration="6757000" />
-      <workItem from="1554445958539" duration="3079000" />
+      <workItem from="1554445958539" duration="3788000" />
+      <workItem from="1554471731508" duration="1537000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64852000" />
+    <option name="totallyTimeSpent" value="67098000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -164,35 +163,15 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://Z:/ecriture fichier printf/main.c" />
+    <entry file="file://Z:/MA-20/lecture fichier get/main.c" />
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://Z:/ecriture fichier printf/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="43" lean-forward="true" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/MA-20/lecture fichier get/main.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="669">
-          <caret line="220" column="21" selection-start-line="220" selection-start-column="21" selection-end-line="220" selection-end-column="21" />
-          <folding>
-            <element signature="e#78#96#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="21" />
         </state>
       </provider>
     </entry>

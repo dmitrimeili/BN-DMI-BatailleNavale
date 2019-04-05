@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include <windows.h>
+#include <mmsystem.h>
 
 #define STLC 218 // ┌, Single Top Left Corner
 #define STRC 191 // ┐, Single Top Right Corner
@@ -200,7 +201,7 @@ int main() {
             printf("Chacun a une flotte composée de 3 bateaux, qui sont, en général,\n");
             printf("les suivants : 1 porte-avion 1 croiseur (4 cases), 1 contre-torpilleur (3 cases),1 torpilleur (2 cases).\n");
             printf("Au début du jeu, chaque joueur place ses bateaux sur sa grille\n");
-            printf("Un à un, les joueurs vont \"tirer\" sur une case de l'adversaire : par exemple, B.3 ou encore H.8.\n");
+            printf("Un à un, les joueurs vont \"tirer\" sur une case de l'adversaire : par exemple, B3 ou encore H8\n");
             printf("Le but est donc de couler les bateaux adverses.\n");
             printf("Au fur et à mesure, il faut mettre les pions sur sa propre grille afin de se souvenir de ses tirs passés.\n\n");
 
@@ -224,6 +225,7 @@ int main() {
             printf("3. Si vous voulez placer vous même les bateaux\n");
             scanf("%d",&choice);
             if (choice == 1) {
+
                 SetConsoleOutputCP(437);
                 char tir[5];
                 int inputX;
@@ -231,6 +233,7 @@ int main() {
 //Tirer sur les bateaux
                 int hits[5] = {0, 0, 0, 0, 0};
                 do {
+                    system("color a");
                     SetConsoleOutputCP(437);
                     grille();
                     SetConsoleOutputCP(65001);
@@ -311,6 +314,7 @@ int main() {
                     }
 
 
+
                 } while (hits[1] != 1 || hits[2] != 2 || hits[3] != 3 || hits[4] != 4);
                 SetConsoleOutputCP(437);
                 grille();
@@ -328,6 +332,8 @@ int main() {
                        "                                                                     \n"
                        "                                                                     ");
                 printf("Vous avez tiré %d fois \n", scores);
+
+
             }
             if(choice==2){
                 printf("cette fonctionalité n'a pas encore été développer\n");
